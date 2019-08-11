@@ -39,6 +39,14 @@ def log(logger, json_params=None,step='new',internal_id=None):
         logger.info('internal_id:{0} , step:{1} , message_id{2}'.format(internal_id,step,json_params['message_id']), extra={
           'json_params': json_params
         })
+    
+def log_2(logger, json_params=None,step='new',internal_id=None):
+    if json_params is None:
+        logger.info('internal_id:{0} , step:{1}'.format(internal_id,step))
+    else:
+        logger.info('internal_id:{0} , step:{1}'.format(internal_id,step), extra={
+          'json_params': json_params
+        })
 #create random string
 def randomString(stringLength=10):
     """Generate a random string of fixed length """
@@ -123,12 +131,12 @@ def tolmachev_best():
                 'tolmachev_best_result':None
                 }
     try:
-        log(logger,step='new',internal_id=internal_id)
+        log_2(logger,step='new',internal_id=internal_id)
         getData = request.get_data()
         json_params = json.loads(getData) 
-        log(logger,json_params,'get json_params',internal_id)
+        log_2(logger,json_params,'get json_params',internal_id)
 
-        #json_params = { 'message_id':0,
+        #json_params = {
         #                'number':'1234',
         #            }
         status_code = 400
@@ -140,7 +148,7 @@ def tolmachev_best():
            result *= int(digits[i])
         
         response['tolmachev_best_result'] = result
-        log(logger,json_params,'model done',internal_id)
+        log_2(logger,json_params,'model done',internal_id)
         status_code = 200
         
     except:
@@ -149,7 +157,7 @@ def tolmachev_best():
         traceback.print_exc()
         response['status'] = 'error'
         response['code'] = 501
-        log(logger,json_params,'some error',internal_id)
+        log_2(logger,json_params,'some error',internal_id)
 
     response = json.dumps(response)
     print(response)
