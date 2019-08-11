@@ -161,8 +161,8 @@ def tolmachev_best():
         response['code'] = 501
         log(logger,json_params,'some error',internal_id)
 
-    response = json.dumps(response)
     log_json(logger, response)
+    response = json.dumps(response)
     print(response)
     return str(response), status_code
         
