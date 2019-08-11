@@ -138,7 +138,7 @@ def tolmachev_best():
         getData = request.get_data()
         json_params = json.loads(getData) 
         log(logger,json_params,'get json_params',internal_id)
-        log_json(json_params)
+        log_json(logger, json_params)
         
         status_code = 400
         status_code = 500
@@ -162,7 +162,7 @@ def tolmachev_best():
         log(logger,json_params,'some error',internal_id)
 
     response = json.dumps(response)
-    log_json(response)
+    log_json(logger, response)
     print(response)
     return str(response), status_code
         
