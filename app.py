@@ -48,8 +48,8 @@ def log(logger, json_params=None,step='new',internal_id=None):
         logger.info('internal_id:{0} , step:{1}'.format(internal_id,step), extra={
           'json_params': json_params
         })
-def log_json(logger, json) :
-    logger.info(json.dumps(json))
+def log_json(logger, string) :
+    logger.info(string)
         
 #create random string
 def randomString(stringLength=10):
@@ -138,7 +138,7 @@ def tolmachev_best():
         getData = request.get_data()
         json_params = json.loads(getData) 
         log(logger,json_params,'get json_params',internal_id)
-        log_json(logger, json_params)
+        log_json(logger, json.dumps(json_params))
         
         status_code = 400
         status_code = 500
@@ -161,8 +161,10 @@ def tolmachev_best():
         response['code'] = 501
         log(logger,json_params,'some error',internal_id)
 
-    log_json(logger, response)
+    
     response = json.dumps(response)
+    log_json(logger, response)
+    
     print(response)
     return str(response), status_code
         
