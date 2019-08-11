@@ -114,6 +114,48 @@ def get_message():
     return str(response)  , status_code
         
 
+@application.route('/tolmachev_best', methods=['GET', 'POST'])  
+def tolmachev_best():
+    internal_id = randomString(10)
+    status_code = 200
+    
+    response = {
+                'tolmachev_best_result':None
+                }
+    try:
+        log(logger,step='new',internal_id=internal_id)
+        getData = request.get_data()
+        json_params = json.loads(getData) 
+        log(logger,json_params,'get json_params',internal_id)
+
+        #json_params = { 'message_id':0,
+        #                'number':'1234',
+        #            }
+        status_code = 400
+        status_code = 500
+        
+        digits = list(str(json_params['number']))
+        result = 1
+        for i in digits :
+           result *= int(digits[i])
+        
+        response['tolmachev_best_result'] = result
+        log(logger,json_params,'model done',internal_id)
+        status_code = 200
+        
+    except:
+        if status_code == 200:
+            status_code = 500
+        traceback.print_exc()
+        response['status'] = 'error'
+        response['code'] = 501
+        log(logger,json_params,'some error',internal_id)
+
+    response = json.dumps(response)
+    print(response)
+    return str(response), status_code
+        
+
 
 if __name__ == "__main__":
     #heroku
