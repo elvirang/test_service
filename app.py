@@ -28,7 +28,7 @@ timber_handler = timber.TimberHandler(source_id=source_id, api_key=log_apikey)
 logger.addHandler(timber_handler)
 
 BASIC_FORMAT = "%(levelname)s:%(message)s"
-FORMAT = "%(levelname)s:%(number)s:%(message)s"
+FORMAT = "%(levelname)s:%(json_params)s:%(message)s"
 
 application = Flask(__name__)  # Change assignment here
 
