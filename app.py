@@ -94,7 +94,7 @@ def get_message():
         
         #make real emoji predict for message
         status_code = 500
-        response['models'] = models_main.main(json_params = json_params , model_to = 'message_id')
+        response['models'] = models_main.main(json_params = json_params , model_to = json_params['message_id'])
         log(logger,json_params,'model done',internal_id)
         
         status_code = 200
