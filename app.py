@@ -32,33 +32,21 @@ application = Flask(__name__)  # Change assignment here
 
 
 #define loger func
-#def log(logger, json_params=None,step='new',internal_id=None):
-#    if json_params is None:
-#        logger.info('internal_id:{0} , step:{1}'.format(internal_id,step))
-#    else:
-#        logger.info('internal_id:{0} , step:{1} , message_id{2}'.format(internal_id,step,json_params['message_id']), extra={
-#          'json_params': json_params
-#        })
-#    
-#def log_2(logger, json_params=None,step='new',internal_id=None):
-#    if json_params is None:
-#        logger.info('internal_id:{0} , step:{1}'.format(internal_id,step))
-#    else:
-#        logger.info('internal_id:{0} , step:{1}'.format(internal_id,step), extra={
-#          'json_params': json_params
-#        })
     
 def log(logger, json_params=None,step='new',internal_id=None):
     if json_params is None:
         logger.info('internal_id:{0} , step:{1}'.format(internal_id,step))
+        logger.info('привет')
     elif 'message_id' in json_params:
         logger.info('internal_id:{0} , step:{1} , message_id{2}'.format(internal_id,step,json_params['message_id']), extra={
           'json_params': json_params
         })
+        logger.info('привет2')
     else:
         logger.info('internal_id:{0} , step:{1}'.format(internal_id,step), extra={
           'json_params': json_params
         })
+        logger.info('привет3')
 #create random string
 def randomString(stringLength=10):
     """Generate a random string of fixed length """
