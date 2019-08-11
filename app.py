@@ -136,7 +136,7 @@ def tolmachev_best():
         
         digits = list(str(json_params['number']))
         result = 1
-        for i in digits :
+        for i in range(len(digits)) :
            result *= int(digits[i])
         
         response['tolmachev_best_result'] = result
