@@ -38,17 +38,19 @@ application = Flask(__name__)  # Change assignment here
 def log(logger, json_params=None,step='new',internal_id=None):
     if json_params is None:
         logger.info('internal_id:{0} , step:{1}'.format(internal_id,step))
-        logger.warning('привет')
+        
     elif 'message_id' in json_params:
         logger.info('internal_id:{0} , step:{1} , message_id{2}'.format(internal_id,step,json_params['message_id']), extra={
           'json_params': json_params
         })
-        logger.warning('привет2')
+        
     else:
         logger.info('internal_id:{0} , step:{1}'.format(internal_id,step), extra={
           'json_params': json_params
         })
-        logger.warning('привет3')
+def log_json(logger, json) :
+    logger.info(json.dumps(json))
+        
 #create random string
 def randomString(stringLength=10):
     """Generate a random string of fixed length """
@@ -138,9 +140,7 @@ def tolmachev_best():
         json_params = json.loads(getData) 
         log(logger,json_params,'get json_params',internal_id)
 
-        #json_params = {
-        #                'number':'1234',
-        #            }
+        log_json(json_params)
         status_code = 400
         status_code = 500
         
@@ -151,6 +151,7 @@ def tolmachev_best():
         
         response['tolmachev_best_result'] = result
         log(logger,json_params,'model done',internal_id)
+        log_json(response)
         status_code = 200
         
     except:
